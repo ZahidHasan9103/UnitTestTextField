@@ -31,10 +31,17 @@ final class ViewControllerTests: XCTestCase {
     }
     
     func test_usernameField_attributeShouldBeSet(){
-        let textField = sut.userNameTextField
-        XCTAssertEqual(textField?.textContentType, .username, "textContentType")
-        XCTAssertEqual(textField?.autocorrectionType, .no, "autoCorrectionType")
-        XCTAssertEqual(textField?.returnKeyType, .next, "returnType")
+        let textField = sut.userNameTextField!
+        XCTAssertEqual(textField.textContentType, .username, "textContentType")
+        XCTAssertEqual(textField.autocorrectionType, .no, "autoCorrectionType")
+        XCTAssertEqual(textField.returnKeyType, .next, "returnType")
+    }
+    
+    func test_passwordField_attributeShouldBeSet(){
+        let textField = sut.passwordTextField!
+        XCTAssertEqual(textField.textContentType, .password, "textContentType")
+        XCTAssertEqual(textField.returnKeyType, .go, "returnType")
+        XCTAssertTrue(textField.isSecureTextEntry)
     }
     
 }
