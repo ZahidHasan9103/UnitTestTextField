@@ -14,7 +14,38 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userNameTextField.delegate = self
+        passwordTextField.delegate = self
         // Do any additional setup after loading the view.
+    }
+    
+    private func performLogin(userName: String, password: String){
+        print("UserName: \(userName)")
+        print("Password: \(password)")
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField === userNameTextField{
+            passwordTextField.becomeFirstResponder()
+        }else{
+            guard let username = userNameTextField.text,
+                  let password = passwordTextField.text else{
+                return false
+            }
+            
+            passwordTextField.resignFirstResponder()
+            performLogin(userName: username, password: password)
+        }
+        return false
+    }
+    
+    //Prevent Spacing for username textfield
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField === userNameTextField{
+            return !string.contains(" ")
+        }else{
+            return true
+        }
     }
 
 
