@@ -10,12 +10,22 @@ import XCTest
 
 final class ViewControllerTests: XCTestCase {
     
-    func test_outlets_shouldBeConnected(){
+    var sut: ViewController!
+    
+    override func setUp() {
+        super.setUp()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let sut:ViewController = storyboard.instantiateViewController(identifier: String(describing: ViewController.self))
+        sut = storyboard.instantiateViewController(identifier: String(describing: ViewController.self))
         
-        sut.loadView()
-        
+        sut.loadViewIfNeeded()
+    }
+    
+    override func tearDown() {
+        sut = nil
+        super.tearDown()
+    }
+    
+    func test_outlets_shouldBeConnected(){
         XCTAssertNotNil(sut.userNameTextField, "usernameField")
         XCTAssertNotNil(sut.passwordTextField, "passwordTextField")
     }
