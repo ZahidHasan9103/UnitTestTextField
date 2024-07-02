@@ -41,7 +41,7 @@ final class ViewControllerTests: XCTestCase {
         let textField = sut.passwordTextField!
         XCTAssertEqual(textField.textContentType, .password, "textContentType")
         XCTAssertEqual(textField.returnKeyType, .go, "returnType")
-        XCTAssertTrue(textField.isSecureTextEntry)
+        XCTAssertTrue(textField.isSecureTextEntry, "isSecureTextEntry")
     }
     
 }

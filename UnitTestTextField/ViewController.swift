@@ -16,7 +16,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         userNameTextField.delegate = self
         passwordTextField.delegate = self
-        // Do any additional setup after loading the view.
     }
     
     private func performLogin(userName: String, password: String){
