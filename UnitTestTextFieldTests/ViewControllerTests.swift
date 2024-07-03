@@ -21,6 +21,7 @@ final class ViewControllerTests: XCTestCase {
     }
     
     override func tearDown() {
+        executeRunLoop()
         sut = nil
         super.tearDown()
     }
@@ -71,7 +72,33 @@ final class ViewControllerTests: XCTestCase {
         let allowChange = shouldChangeCharacters(in: sut.passwordTextField, replacement: "abc")
         
         XCTAssertEqual(allowChange, true)
+    }
+    
+    //MARK: - Test Input + Focus
+    func test_shouldReturn_withPassword_shouldPerformLogin(){
+        sut.userNameTextField.text = "USERNAME"
+        sut.passwordTextField.text = "PASSWORD"
         
+        shouldReturn(in: sut.passwordTextField)
+    }
+    
+    func test_shouldReturn_withUsername_shouldMoveInputFocusToPassword(){
+        
+        putInViewHierarchy(sut)
+        
+        shouldReturn(in: sut.userNameTextField)
+        
+        XCTAssertTrue(sut.passwordTextField.isFirstResponder)
+    }
+    
+    func test_shouldReturn_withPassword_shouldDismissKeyboard(){
+        putInViewHierarchy(sut)
+        sut.passwordTextField.becomeFirstResponder()
+        XCTAssertTrue(sut.passwordTextField.isFirstResponder, "precondition")
+        
+        shouldReturn(in: sut.passwordTextField)
+        
+        XCTAssertFalse(sut.passwordTextField.isFirstResponder)
     }
     
 }

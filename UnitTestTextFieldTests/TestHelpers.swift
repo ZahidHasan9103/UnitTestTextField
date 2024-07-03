@@ -72,3 +72,16 @@ func shouldChangeCharacters(
             replacementString: replacement)
         
     }
+
+@discardableResult func shouldReturn(in textField: UITextField) -> Bool?{
+    textField.delegate?.textFieldShouldReturn?(textField)
+}
+
+func putInViewHierarchy(_ vc: UIViewController){
+    let window = UIWindow()
+    window.addSubview(vc.view)
+}
+
+func executeRunLoop(){
+    RunLoop.current.run(until: Date())
+}

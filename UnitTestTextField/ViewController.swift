@@ -12,6 +12,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet private(set) weak var userNameTextField: UITextField!
     @IBOutlet private(set) weak var passwordTextField: UITextField!
     
+    deinit{
+        print("ViewController.deinit")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         userNameTextField.delegate = self
