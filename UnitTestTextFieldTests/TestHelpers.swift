@@ -59,6 +59,16 @@ extension UIReturnKeyType: CustomStringConvertible{
             fatalError("Unknown UIReturnKeyType")
         }
     }
-    
-    
 }
+
+func shouldChangeCharacters(
+    in textField: UITextField,
+    range: NSRange = NSRange(),
+    replacement: String) -> Bool?{
+        
+        textField.delegate?.textField?(
+            textField,
+            shouldChangeCharactersIn: range,
+            replacementString: replacement)
+        
+    }
